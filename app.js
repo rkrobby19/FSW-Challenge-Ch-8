@@ -1,11 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const swaggerUI = require("swagger-ui-express");
+const swaggerData = require("./swagger.json");
 
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+    // ! react app
+    origin: "http://localhost:3000",
 };
 
 app.use(cors(corsOptions));
@@ -19,7 +22,10 @@ db.client.sync();
 
 require("./app/routes/player.routes")(app);
 
+// * Swagger docs
+app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerData));
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+    console.log(`Server is running on port ${PORT}.`);
 });
