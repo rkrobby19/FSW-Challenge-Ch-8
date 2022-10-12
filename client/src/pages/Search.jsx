@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import ResultTable from "../components/ResultTable";
+import TableData from "../components/TableData";
 import SearchForm from "../components/SearchForm";
 
 const Search = () => {
@@ -15,7 +15,7 @@ const Search = () => {
             </div>
             <div className="col-lg-8">
                 <div className="container">
-                    <ResultTable />
+                    <TableData />
                 </div>
             </div>
         </div>

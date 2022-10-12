@@ -23,7 +23,7 @@ db.client.sync();
 require("./app/routes/player.routes")(app);
 
 // * Swagger docs
-app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerData));
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerData));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

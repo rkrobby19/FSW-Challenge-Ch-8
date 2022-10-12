@@ -11,11 +11,10 @@ function CollapsibleNavbar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#dashboard">Dashboard</Nav.Link>
-                        <Nav.Link href="#search">Search</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#signup">Sign Up</Nav.Link>
                         <Nav.Link href="#login">Log In</Nav.Link>
+                        <Nav.Link href="#signup">Sign Up</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
