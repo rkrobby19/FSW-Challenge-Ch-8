@@ -4,15 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import Navbar from "./components/Navbar";
-import Dashboard from "./pages/Dashboard";
-import Search from "./pages/Search";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <Navbar />
-        <Dashboard />
+        <App />
     </React.StrictMode>
 );
 

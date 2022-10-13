@@ -1,25 +1,36 @@
 import Card from "react-bootstrap/Card";
-import TableData from "../components/TableData";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import SearchForm from "../components/SearchForm";
+import { Component } from "react";
+import TableData from "../components/TableData";
 
-const Search = () => {
-    return (
-        <div className="d-flex container" style={{ backgroundColor: "#eee" }}>
-            <div className="col-lg-4">
-                <Card>
-                    <Card.Body>
-                        <Card.Title>Advanced Search</Card.Title>
-                        <SearchForm />
-                    </Card.Body>
-                </Card>
-            </div>
-            <div className="col-lg-8">
-                <div className="container">
-                    <TableData />
-                </div>
-            </div>
-        </div>
-    );
-};
+class Search extends Component {
+    state = {
+        players: [],
+    };
+    render() {
+        return (
+            <Container style={{ backgroundColor: "#eee" }}>
+                <Row>
+                    <Col>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>
+                                    <h2>Search Player</h2>
+                                </Card.Title>
+                                <SearchForm />
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col xs={8}>
+                        <TableData players={this.state.players} />
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+}
 
 export default Search;

@@ -19,7 +19,7 @@ function SearchForm() {
                 </Col>
             </Form.Group>
 
-            <Form.Group
+            {/* <Form.Group
                 as={Row}
                 className="mb-3"
                 controlId="formHorizontalEmail"
@@ -48,7 +48,7 @@ function SearchForm() {
                 <Col sm={8}>
                     <Form.Control type="number" placeholder="Lvl" />
                 </Col>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group as={Row} className="mb-3">
                 <Col sm={{ span: 10, offset: 2 }}>

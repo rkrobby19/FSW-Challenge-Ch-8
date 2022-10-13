@@ -6,11 +6,12 @@ function CollapsibleNavbar() {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">ROBBY</Navbar.Brand>
+                <Navbar.Brand href="/">ROBBY</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#dashboard">Dashboard</Nav.Link>
+                        <Nav.Link href="/">Dashboard</Nav.Link>
+                        <Nav.Link href="/search">Search</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="#login">Log In</Nav.Link>
