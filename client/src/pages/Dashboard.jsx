@@ -10,7 +10,10 @@ class Dashboard extends Component {
         show: false,
     };
 
-    handleShow = () => this.setState({ show: !this.state.show });
+    handleShow = () => {
+        this.setState({ show: !this.state.show });
+        this.getAllPlayers();
+    };
 
     getAllPlayers = async () => {
         const resp = await fetch(`http://localhost:5000/api/players`);
