@@ -1,3 +1,4 @@
+import Button from "react-bootstrap/esm/Button";
 import Table from "react-bootstrap/Table";
 
 function TableData(props) {
@@ -22,14 +23,24 @@ function TableData(props) {
                         <td>
                             <ul className="list-inline">
                                 <li className="list-inline-item">
-                                    <a href="#edit">
+                                    <Button
+                                        variant="outline-primary"
+                                        onClick={() => {
+                                            props.editHandle(player);
+                                        }}
+                                    >
                                         <i className="fa-solid fa-circle-info"></i>
-                                    </a>
+                                    </Button>
                                 </li>
                                 <li className="list-inline-item">
-                                    <a href="#delete">
-                                        <i className="fa fa-trash text-danger"></i>
-                                    </a>
+                                    <Button
+                                        variant="outline-danger"
+                                        onClick={() => {
+                                            props.deleteHandle(player.id);
+                                        }}
+                                    >
+                                        <i className="fa-solid fa-trash text-ligt"></i>
+                                    </Button>
                                 </li>
                             </ul>
                         </td>

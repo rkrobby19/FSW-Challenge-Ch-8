@@ -1,3 +1,4 @@
+import Container from "react-bootstrap/Container";
 import TableData from "../components/TableData";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
@@ -11,7 +12,9 @@ class Dashboard extends Component {
     };
 
     handleShow = () => {
-        this.setState({ show: !this.state.show });
+        this.setState({
+            show: !this.state.show,
+        });
         this.getAllPlayers();
     };
 
@@ -24,30 +27,43 @@ class Dashboard extends Component {
         });
     };
 
+    editHandle = (data) => {
+        window.alert(`edit button`);
+    };
+
+    deleteHandle = (id) => {
+        window.alert(`iam delete button id=${id}`);
+    };
+
     componentDidMount() {
         this.getAllPlayers();
     }
 
     render() {
         return (
-            <div className="container" style={{ backgroundColor: "#eee" }}>
+            <Container style={{ backgroundColor: "#eee" }}>
                 <Stack gap={3}>
-                    <div>
+                    <Container>
                         <Button variant="success" onClick={this.handleShow}>
-                            <i class="fa-solid fa-circle-plus"></i> New Player
+                            <i className="fa-solid fa-circle-plus"></i> New
+                            Player
                         </Button>
 
                         <InsertModal
                             show={this.state.show}
                             handleClose={this.handleShow}
                         />
-                    </div>
+                    </Container>
 
-                    <div>
-                        <TableData players={this.state.players} />
-                    </div>
+                    <Container>
+                        <TableData
+                            players={this.state.players}
+                            editHandle={this.editHandle}
+                            deleteHandle={this.deleteHandle}
+                        />
+                    </Container>
                 </Stack>
-            </div>
+            </Container>
         );
     }
 }
