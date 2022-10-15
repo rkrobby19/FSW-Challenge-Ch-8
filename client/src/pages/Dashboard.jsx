@@ -31,8 +31,19 @@ class Dashboard extends Component {
         window.alert(`edit button`);
     };
 
-    deleteHandle = (id) => {
-        window.alert(`iam delete button id=${id}`);
+    deleteHandle = async (id) => {
+        let choice = window.confirm(`are you sure to delete this player data?`);
+        if (choice) {
+            const resp = await fetch(
+                `http://localhost:5000/api/players/${id}`,
+                {
+                    method: "DELETE",
+                }
+            );
+            if (resp.status === 200) {
+                this.getAllPlayers();
+            }
+        }
     };
 
     componentDidMount() {
