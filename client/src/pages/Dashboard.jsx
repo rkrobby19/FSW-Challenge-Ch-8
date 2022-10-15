@@ -8,7 +8,14 @@ import InsertModal from "../components/InsertModal";
 class Dashboard extends Component {
     state = {
         players: [],
+
         show: false,
+        isInsert: true,
+        playerId: "",
+        username: "",
+        email: "",
+        password: "",
+        experience: "",
     };
 
     handleShow = () => {
@@ -27,8 +34,54 @@ class Dashboard extends Component {
         });
     };
 
-    editHandle = (data) => {
-        window.alert(`edit button`);
+    createHandle = () => {
+        this.setState({
+            isInsert: true,
+        });
+
+        this.handleShow();
+    };
+
+    handleOnChange = (event) => {
+        this.setState({
+            [event.target.id]: event.target.value,
+        });
+    };
+
+    editHandle = async (data) => {
+        this.setState({
+            isInsert: false,
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            experience: data.experience,
+            playerId: data.id,
+        });
+
+        this.handleShow();
+    };
+
+    submitEdit = async () => {
+        const data = {
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+        };
+
+        const resp = await fetch(
+            `http://localhost:5000/api/players/${this.state.playerId}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            }
+        );
+        if (resp.status === 200) {
+            window.alert(`Edit Player Success`);
+            this.handleShow();
+        }
     };
 
     deleteHandle = async (id) => {
@@ -41,6 +94,7 @@ class Dashboard extends Component {
                 }
             );
             if (resp.status === 200) {
+                window.alert(`Delete Player Success`);
                 this.getAllPlayers();
             }
         }
@@ -55,7 +109,7 @@ class Dashboard extends Component {
             <Container style={{ backgroundColor: "#eee" }}>
                 <Stack gap={3}>
                     <Container>
-                        <Button variant="success" onClick={this.handleShow}>
+                        <Button variant="success" onClick={this.createHandle}>
                             <i className="fa-solid fa-circle-plus"></i> New
                             Player
                         </Button>
@@ -63,6 +117,13 @@ class Dashboard extends Component {
                         <InsertModal
                             show={this.state.show}
                             handleClose={this.handleShow}
+                            status={this.state.isInsert}
+                            username={this.state.username}
+                            email={this.state.email}
+                            password={this.state.password}
+                            experience={this.state.experience}
+                            onChangeFunc={this.handleOnChange}
+                            submitEdit={this.submitEdit}
                         />
                     </Container>
 

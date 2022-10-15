@@ -44,7 +44,11 @@ class InsertModal extends Component {
             <>
                 <Modal show={this.props.show} onHide={this.props.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Create New Player</Modal.Title>
+                        {this.props.status ? (
+                            <Modal.Title>Create New Player</Modal.Title>
+                        ) : (
+                            <Modal.Title>Edit Player</Modal.Title>
+                        )}
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
@@ -53,12 +57,22 @@ class InsertModal extends Component {
                                     Username
                                 </Form.Label>
                                 <Col sm={9}>
-                                    <Form.Control
-                                        type="string"
-                                        placeholder="Username"
-                                        id="username"
-                                        onChange={this.onChangeHandle}
-                                    />
+                                    {this.props.status ? (
+                                        <Form.Control
+                                            type="string"
+                                            placeholder="Username"
+                                            id="username"
+                                            onChange={this.onChangeHandle}
+                                        />
+                                    ) : (
+                                        <Form.Control
+                                            type="string"
+                                            placeholder="Username"
+                                            id="username"
+                                            defaultValue={this.props.username}
+                                            onChange={this.props.onChangeFunc}
+                                        />
+                                    )}
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} className="mb-3">
@@ -66,12 +80,22 @@ class InsertModal extends Component {
                                     Email
                                 </Form.Label>
                                 <Col sm={9}>
-                                    <Form.Control
-                                        type="email"
-                                        placeholder="Email"
-                                        id="email"
-                                        onChange={this.onChangeHandle}
-                                    />
+                                    {this.props.status ? (
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Email"
+                                            id="email"
+                                            onChange={this.onChangeHandle}
+                                        />
+                                    ) : (
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Email"
+                                            id="email"
+                                            defaultValue={this.props.email}
+                                            onChange={this.props.onChangeFunc}
+                                        />
+                                    )}
                                 </Col>
                             </Form.Group>
 
@@ -80,12 +104,22 @@ class InsertModal extends Component {
                                     Password
                                 </Form.Label>
                                 <Col sm={9}>
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Password"
-                                        id="password"
-                                        onChange={this.onChangeHandle}
-                                    />
+                                    {this.props.status ? (
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            id="password"
+                                            onChange={this.onChangeHandle}
+                                        />
+                                    ) : (
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            id="password"
+                                            defaultValue={this.props.password}
+                                            onChange={this.props.onChangeFunc}
+                                        />
+                                    )}
                                 </Col>
                             </Form.Group>
 
@@ -94,12 +128,23 @@ class InsertModal extends Component {
                                     Experience
                                 </Form.Label>
                                 <Col sm={9}>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder="0"
-                                        id="experience"
-                                        onChange={this.onChangeHandle}
-                                    />
+                                    {this.props.status ? (
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="0"
+                                            id="experience"
+                                            onChange={this.onChangeHandle}
+                                        />
+                                    ) : (
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="0"
+                                            id="experience"
+                                            defaultValue={this.props.experience}
+                                            onChange={this.props.onChangeFunc}
+                                            disabled
+                                        />
+                                    )}
                                 </Col>
                             </Form.Group>
                         </Form>
@@ -111,9 +156,23 @@ class InsertModal extends Component {
                         >
                             Close
                         </Button>
-                        <Button variant="primary" onClick={this.submitHandle}>
-                            Create
-                        </Button>
+                        {this.props.status ? (
+                            <Button
+                                variant="primary"
+                                onClick={this.submitHandle}
+                            >
+                                Create
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="primary"
+                                onClick={() => {
+                                    this.props.submitEdit();
+                                }}
+                            >
+                                Save Changes
+                            </Button>
+                        )}
                     </Modal.Footer>
                 </Modal>
             </>
