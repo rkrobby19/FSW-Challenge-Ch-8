@@ -8,7 +8,6 @@ import InsertModal from "../components/InsertModal";
 class Dashboard extends Component {
     state = {
         players: [],
-
         show: false,
         isInsert: true,
         playerId: "",
@@ -16,6 +15,7 @@ class Dashboard extends Component {
         email: "",
         password: "",
         experience: "",
+        addExp: 0,
     };
 
     handleShow = () => {
@@ -67,7 +67,6 @@ class Dashboard extends Component {
             email: this.state.email,
             password: this.state.password,
         };
-
         const resp = await fetch(
             `http://localhost:5000/api/players/${this.state.playerId}`,
             {
@@ -78,8 +77,27 @@ class Dashboard extends Component {
                 body: JSON.stringify(data),
             }
         );
+
+        if (this.state.addExp !== 0) {
+            const add = {
+                exp: this.state.addExp,
+            };
+            const addResp = await fetch(
+                `http://localhost:5000/api/players/exp/${this.state.playerId}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(add),
+                }
+            );
+        }
+
         if (resp.status === 200) {
-            window.alert(`Edit Player Success`);
+            this.setState({
+                addExp: 0,
+            });
             this.handleShow();
         }
     };
@@ -122,6 +140,7 @@ class Dashboard extends Component {
                             email={this.state.email}
                             password={this.state.password}
                             experience={this.state.experience}
+                            addExp={this.state.addExp}
                             onChangeFunc={this.handleOnChange}
                             submitEdit={this.submitEdit}
                         />

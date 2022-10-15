@@ -20,7 +20,6 @@ class InsertModal extends Component {
             password: this.state.password,
             exp: this.state.experience,
         };
-        // console.log(data);
         const resp = await fetch(`http://localhost:5000/api/players`, {
             method: "POST",
             headers: {
@@ -142,11 +141,31 @@ class InsertModal extends Component {
                                             id="experience"
                                             defaultValue={this.props.experience}
                                             onChange={this.props.onChangeFunc}
-                                            disabled
+                                            plaintext
+                                            readOnly
                                         />
                                     )}
                                 </Col>
                             </Form.Group>
+
+                            {!this.props.status ? (
+                                <Form.Group as={Row} className="mb-3">
+                                    <Form.Label column sm={3}>
+                                        Add Exp
+                                    </Form.Label>
+                                    <Col sm={9}>
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="0"
+                                            id="addExp"
+                                            defaultValue={this.props.addExp}
+                                            onChange={this.props.onChangeFunc}
+                                        />
+                                    </Col>
+                                </Form.Group>
+                            ) : (
+                                <></>
+                            )}
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
