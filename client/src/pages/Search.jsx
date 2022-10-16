@@ -6,10 +6,57 @@ import SearchForm from "../components/SearchForm";
 import { Component } from "react";
 import TableData from "../components/TableData";
 
+const queryString = require("query-string");
+
 class Search extends Component {
     state = {
         players: [],
+        username: "",
+        email: "",
+        exp: "",
+        lvl: "",
     };
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.id]: event.target.value,
+        });
+    };
+
+    handleSearch = async () => {
+        const data = {
+            username: this.state.username,
+            email: this.state.email,
+            exp: this.state.exp,
+            lvl: this.state.lvl,
+        };
+
+        const stringified = queryString.stringify(data);
+        const resp = await fetch(
+            `http://localhost:5000/api/players?${stringified}`
+        );
+        const playersData = await resp.json();
+
+        this.setState({
+            players: playersData.message,
+        });
+
+        if (resp.status === 200) {
+            this.setState({
+                username: "",
+                email: "",
+                exp: "",
+                lvl: "",
+            });
+        }
+
+        this.componentDidMount();
+    };
+
+    componentDidMount() {
+        console.log(this.state.players);
+    }
+
     render() {
         return (
             <Container style={{ backgroundColor: "#eee" }}>
@@ -20,7 +67,10 @@ class Search extends Component {
                                 <Card.Title>
                                     <h2>Search Player</h2>
                                 </Card.Title>
-                                <SearchForm />
+                                <SearchForm
+                                    handleOnChange={this.handleChange}
+                                    handleSearch={this.handleSearch}
+                                />
                             </Card.Body>
                         </Card>
                     </Col>

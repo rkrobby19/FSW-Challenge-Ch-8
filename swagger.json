@@ -570,6 +570,16 @@
                         "type": "integer",
                         "format": "integer",
                         "example": 1
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-10-16T08:30:19.150Z"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-10-16T08:30:19.150Z"
                     }
                 }
             }
