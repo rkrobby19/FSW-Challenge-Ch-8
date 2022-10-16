@@ -53,19 +53,20 @@ class Search extends Component {
         this.componentDidMount();
     };
 
-    componentDidMount() {
-        console.log(this.state.players);
-    }
+    componentDidMount() {}
 
     render() {
         return (
-            <Container style={{ backgroundColor: "#eee" }}>
+            <Container className="my-container">
                 <Row>
                     <Col>
-                        <Card>
+                        <Card bg="light">
                             <Card.Body>
-                                <Card.Title>
-                                    <h2>Search Player</h2>
+                                <Card.Title className="text-center">
+                                    <h2>
+                                        <i class="fa-solid fa-user add-space"></i>
+                                        Search Player
+                                    </h2>
                                 </Card.Title>
                                 <SearchForm
                                     handleOnChange={this.handleChange}
@@ -75,7 +76,9 @@ class Search extends Component {
                         </Card>
                     </Col>
                     <Col xs={8}>
-                        <TableData players={this.state.players} />
+                        <Container>
+                            <TableData players={this.state.players} />
+                        </Container>
                     </Col>
                 </Row>
             </Container>

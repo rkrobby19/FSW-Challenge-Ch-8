@@ -71,6 +71,7 @@ class SearchForm extends Component {
                                 this.props.handleSearch();
                             }}
                         >
+                            <i class="fa-sharp fa-solid fa-magnifying-glass add-space "></i>
                             Search
                         </Button>
                     </Col>

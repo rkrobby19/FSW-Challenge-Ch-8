@@ -3,7 +3,14 @@ import Table from "react-bootstrap/Table";
 
 function TableData(props) {
     return (
-        <Table striped bordered hover size="sm" className="text-center">
+        <Table
+            striped
+            bordered
+            hover
+            size="sm"
+            className="text-center my-table"
+            variant="dark"
+        >
             <thead>
                 <tr>
                     <th>Username</th>
@@ -29,7 +36,7 @@ function TableData(props) {
                                             props.editHandle(player);
                                         }}
                                     >
-                                        <i className="fa-solid fa-circle-info"></i>
+                                        <i className="fa-solid fa-pen-to-square"></i>
                                     </Button>
                                 </li>
                                 <li className="list-inline-item">

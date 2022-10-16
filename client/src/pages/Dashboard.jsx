@@ -103,7 +103,7 @@ class Dashboard extends Component {
     };
 
     deleteHandle = async (id) => {
-        let choice = window.confirm(`are you sure to delete this player data?`);
+        let choice = window.confirm(`Are you sure to delete this player data?`);
         if (choice) {
             const resp = await fetch(
                 `http://localhost:5000/api/players/${id}`,
@@ -124,12 +124,12 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <Container style={{ backgroundColor: "#eee" }}>
+            <Container className="my-container">
                 <Stack gap={3}>
                     <Container>
                         <Button variant="success" onClick={this.createHandle}>
-                            <i className="fa-solid fa-circle-plus"></i> New
-                            Player
+                            <i className="fa-solid fa-circle-plus add-space "></i>{" "}
+                            New Player
                         </Button>
 
                         <InsertModal
