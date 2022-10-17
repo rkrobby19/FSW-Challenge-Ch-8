@@ -67,3 +67,5 @@ Jika teman-teman sudah berhasil menjalankan aplikasi RESTful API dari repository
 ## Petunjuk Submission
 - Challenge di submit paling lambat hari Senin di minggu ketiga chapter 8, pukul 23:59 WIB.
 - metode submission: kirim email ke mentor dan bagian akademik Binar, berisi link repository teman-teman (yang di fork) di Gitlab.
+
+By Robby
